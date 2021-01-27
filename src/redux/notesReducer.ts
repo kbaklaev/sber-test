@@ -1,6 +1,7 @@
 import { ADD_NOTE } from "./actions";
 
 interface INote {
+  id: string,
   title: string;
   tasks: string[];
 }
@@ -17,6 +18,7 @@ interface IAction {
 const initialState: INotes = {
   notes: [
     {
+      id: '1',
       title: "тестовая заметка",
       tasks: ["задача 1", "задача 2"],
     },

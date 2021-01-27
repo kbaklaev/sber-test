@@ -4,6 +4,7 @@ import { addNote } from '../redux/actions'
 import NoteCard from "./noteCard";
 
 interface INote {
+  id: string;
   title: string;
   tasks: string[];
 }
@@ -23,7 +24,7 @@ const Notes: React.FC = () => {
         {
           notes.length && notes.map((note: INote, index: number) => (
             <React.Fragment key={index}>
-              <NoteCard title={note.title} tasks={note.tasks} />
+              <NoteCard id={note.id} title={note.title} tasks={note.tasks} />
             </React.Fragment>
           ))
         }
