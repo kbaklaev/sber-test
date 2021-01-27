@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Task: React.FC = () => {
+interface ITask {
+  task: string
+}
+
+const Task: React.FC<ITask> = ({ task }) => {
+  const [taskText, setTaskText] = useState(task)
+
   return (
     <div>
-      task
+      <label htmlFor={taskText}>задача</label>
+      <input
+        id={taskText}
+        type="text"
+        value={taskText}
+        onChange={(e) => setTaskText(e.target.value)}
+      />
     </div>
   )
 }
