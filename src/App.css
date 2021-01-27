@@ -1,38 +1,40 @@
 .App {
-  text-align: center;
+  --main-padding: 1rem;
+  --first-color: #00713d;
+  --second-color: #43973b;
+  --third-color: #7ec245;
+  padding: var(--main-padding);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.note-card {
+  width: fit-content;
+  min-width: 20rem;
+  padding: var(--main-padding);
+  border: 1px solid var(--first-color);
+  border-radius: 10px;
+  background-color: var(--third-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.note-card__header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.heading {
+  margin: 0;
+  padding: 0.5rem var(--main-padding);
+  text-transform: capitalize;
+  background-color: white;
+  color: var(--first-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.note-card__header__button {
+  border: 1px solid var(--first-color);
+  border-radius: 10px;
+}
+
+.notes_main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--main-padding);
 }
