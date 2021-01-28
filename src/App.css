@@ -1,14 +1,29 @@
+body {
+  height: max-content;
+  background-color: #00713c33;
+}
+
 .App {
   --main-padding: 1rem;
   --first-color: #00713d;
   --second-color: #43973b;
   --third-color: #7ec245;
   padding: var(--main-padding);
+  word-wrap: break-word;
+}
+
+h2, h3 {
+  margin: 0;
+}
+
+.empty {
+  padding: 2rem;
+  color: var(--first-color);
 }
 
 .note-card {
-  width: fit-content;
   min-width: 20rem;
+  max-width: 26rem;
   padding: var(--main-padding);
   border: 1px solid var(--first-color);
   border-radius: 10px;
@@ -20,6 +35,38 @@
   gap: 10px;
 }
 
+.note-card h3 {
+  text-transform: capitalize;
+  padding: 0.5rem 0;
+}
+
+.note-card__title {
+  display: flex;
+  gap: 10px;
+}
+
+.note__buttons{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.note__buttons button {
+  width: 30%;
+  padding: 0.5rem 0;
+  border: 1px solid var(--first-color);
+  border-radius: 20px;
+  background-color: var(--second-color);
+  color: white;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.note__buttons button:hover {
+  background-color: white;
+  color: var(--first-color);
+}
+
 .heading {
   margin: 0;
   padding: 0.5rem var(--main-padding);
@@ -28,13 +75,144 @@
   color: var(--first-color);
 }
 
-.note-card__header__button {
-  border: 1px solid var(--first-color);
-  border-radius: 10px;
-}
-
 .notes_main {
   display: flex;
   flex-wrap: wrap;
   gap: var(--main-padding);
+}
+
+.notes_add_button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: xx-large;
+}
+
+.notes_back_button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: xx-large;
+  transform: rotate(180deg);
+}
+
+.round-button {
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--first-color);
+  border-radius: 25px;
+  fill: white;
+  background-color: var(--second-color);
+  transition: fill 0.2s, background-color 0.2s;
+}
+
+.round-button:hover {
+  fill: var(--first-color);
+  background-color: white;
+}
+
+.task-done {
+  text-decoration: line-through;
+}
+
+.title-input {
+  height: 2rem;
+  width: 87%;
+  border: 1px solid var(--first-color);
+  border-radius: 25px;
+  padding-left: 0.5rem;
+}
+
+.task {
+  width: 100%;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+  display: flex;
+  gap: 10px;
+}
+.task__input {
+  height: 2rem;
+  width: 80%;
+  margin-bottom: 10px;
+  border: 1px solid var(--first-color);
+  border-radius: 25px;
+  padding-left: 0.5rem;
+}
+
+.task__checkbox__container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-top: 2px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.task__checkbox__container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.task__checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--first-color);
+  background-color: #eee;
+}
+
+.task__checkbox__container:hover input ~ .task__checkbox {
+  background-color: #ccc;
+}
+
+.task__checkbox__container input:checked ~ .task__checkbox {
+  background-color: var(--second-color);
+}
+
+.task__checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.task__checkbox__container input:checked ~ .task__checkbox:after {
+  display: block;
+}
+
+.task__checkbox__container .task__checkbox:after {
+  left: 12px;
+  top: 8px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.task__remove_button{
+  display: flex;
+  margin-top: 2px;
+  height: 2rem;
+  width: 2rem;
+  border: 1px solid #830000;
+  border-radius: 1rem;
+  background-color: #cc0000;
+  fill: white;
+}
+.task__remove_button svg {
+  padding-top: 2px;
+  text-align: center;
 }

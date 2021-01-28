@@ -1,35 +1,45 @@
 import React from "react";
-import { useHistory } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
+import { PencilIcon } from "./icons/icons";
+import { INote, ITask } from "./types";
 
-interface INoteCard {
-  id: string;
-  title: string;
-  tasks: string[];
+interface INoteCardProps {
+  note: INote;
 }
 
-const NoteCard: React.FC<INoteCard> = ({ id, title, tasks }) => {
-  const history = useHistory()
+const NoteCard: React.FC<INoteCardProps> = ({ note }) => {
+  const history = useHistory();
 
-  const editNoteHandler = () => {
-    history.push(`/notes/note/${id}`)
-  }
+  const editNoteHandler = (): void => {
+    history.push(`/notes/note/${note.id}`);
+  };
 
   return (
     <div className="note-card">
       <header className="note-card__header">
-        <h2 className="note-card heading">{title}</h2>
+        <h2 className="note-card heading">{note.title}</h2>
         <button
           type="button"
-          className="note-card__header__button"
+          title="Редактировать заметку"
+          className="round-button"
           onClick={() => editNoteHandler()}
         >
-          изменить
+          <PencilIcon />
         </button>
       </header>
-      <ul>
-        {tasks.length &&
-          tasks.map((task, index: number) => <li key={index}>{task}</li>)}
-      </ul>
+      <main>
+        <ul>
+          {note.tasks.length &&
+            note.tasks.map(
+              (task: ITask) =>
+                task.title && (
+                  <li key={task.id} className={task.isDone ? "task-done" : ""}>
+                    {task.title}
+                  </li>
+                )
+            )}
+        </ul>
+      </main>
     </div>
   );
 };
