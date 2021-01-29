@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 interface ICallback {
   (): void;
@@ -16,7 +15,6 @@ const NoteButtons: React.FC<INoteButtons> = ({
   addTaskHandlerCallback,
   cancelChangesCallback,
 }) => {
-  const history = useHistory();
 
   const addTaskHandler = (): void => {
     addTaskHandlerCallback();

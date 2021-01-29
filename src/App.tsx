@@ -3,10 +3,20 @@ import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Notes from "./components/notes";
 import CurrentNote from "./components/currentNote";
+import { Helmet } from "react-helmet";
 
 function App() {
   return (
     <div className="App">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Заметки - Сбербанк</title>
+        <link rel="canonical" href="http://sber-test.com/" />
+        <link
+          rel="icon"
+          href="https://www.sberbank.ru/portalserver/static/templates/%5BBBHOST%5D/RuMasterpageTemplate/static/favicon.ico"
+        />
+      </Helmet>
       <Switch>
         <Route exact path="/notes" component={Notes} />
         <Route exact path="/notes/note/:id" component={CurrentNote} />

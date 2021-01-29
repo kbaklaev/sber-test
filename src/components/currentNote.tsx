@@ -8,7 +8,7 @@ import { BackIcon, DeleteIcon } from "./icons/icons";
 import NoteButtons from "./note/noteButtons";
 import Task from "./note/task";
 import RemoveNoteNotification from "./notifications/removeNoteNotification";
-import { INote, INotes, ITask, IUseSelector } from "./types";
+import { INote, ITask, IUseSelector } from "./types";
 
 const initialNote: INote = {
   id: "",

@@ -5,8 +5,6 @@ import { IAction, INote } from "../components/types";
 const existNotesString: string = localStorage.getItem("notes") || "[]";
 const existNotes: INote[] = JSON.parse(existNotesString) || [];
 
-console.log(existNotes)
-
 const initialState: INotes = { notes: existNotes };
 
 const notesReducer = (state = initialState, action: IAction) => {
