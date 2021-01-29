@@ -17,7 +17,7 @@ const Notes: React.FC = () => {
 
   return (
     <div>
-      <main className="notes_main">
+      <main className="notes__main">
         {notes.length ? (
           notes.map((note: INote) => (
             <React.Fragment key={note.id}>
@@ -36,7 +36,7 @@ const Notes: React.FC = () => {
       <button
         type="button"
         title="Добавить новую заметку"
-        className="round-button notes_add_button"
+        className="round-button notes__add-button"
         onClick={addNewNoteHandler}
       >
         <PlusIcon />
@@ -45,7 +45,7 @@ const Notes: React.FC = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Example Modal"
-        className="modal_remove"
+        className="modal__remove"
         ariaHideApp={false}
       >
         <NewNoteNotification closeModal={closeModal} />

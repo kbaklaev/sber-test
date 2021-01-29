@@ -10,7 +10,6 @@ body {
   --third-color: #7ec245;
   padding: var(--main-padding);
   word-wrap: break-word;
-  outline-width: 0px;
 }
 
 h2,
@@ -29,7 +28,7 @@ h3 {
 
 .note-card {
   min-width: 20rem;
-  max-width: 26rem;
+  max-width: 30rem;
   padding: var(--main-padding);
   border: 1px solid var(--first-color);
   border-radius: 10px;
@@ -60,13 +59,13 @@ h3 {
 
 .note__buttons button {
   width: 30%;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   border: 1px solid var(--first-color);
   border-radius: 20px;
   background-color: var(--second-color);
   color: white;
   transition: background-color 0.2s, color 0.2s;
-    outline-width: 0px;
+  outline-width: 0px;
 }
 
 .note__buttons button:hover {
@@ -82,20 +81,20 @@ h3 {
   color: var(--first-color);
 }
 
-.notes_main {
+.notes__main {
   display: flex;
   flex-wrap: wrap;
   gap: var(--main-padding);
 }
 
-.notes_add_button {
+.notes__add-button {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   font-size: xx-large;
 }
 
-.notes_back_button {
+.notes__back-button {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
@@ -111,6 +110,12 @@ h3 {
   fill: white;
   background-color: var(--second-color);
   transition: fill 0.2s, background-color 0.2s;
+  outline-width: 0px;
+}
+
+.round-button.red {
+  border-color: #830000;
+  background-color: #cc0000;
 }
 
 .round-button:hover {
@@ -118,16 +123,22 @@ h3 {
   background-color: white;
 }
 
+.round-button.red:hover {
+  fill: #cc0000;
+  background-color: white;
+}
+
 .task-done {
   text-decoration: line-through;
 }
 
-.title-input {
+.title__input {
   height: 2rem;
-  width: 87%;
+  width: 90%;
   border: 1px solid var(--first-color);
   border-radius: 25px;
   padding-left: 0.5rem;
+  outline-width: 0px;
 }
 
 .task {
@@ -144,6 +155,7 @@ h3 {
   border: 1px solid var(--first-color);
   border-radius: 25px;
   padding-left: 0.5rem;
+  outline-width: 0px;
 }
 
 .task__checkbox__container {
@@ -217,13 +229,20 @@ h3 {
   border-radius: 1rem;
   background-color: #cc0000;
   fill: white;
+  outline-width: 0px;
+  transition: background-color 0.2s, fill 0.2s;
 }
 .task__remove_button svg {
   padding-top: 2px;
   text-align: center;
 }
 
-.modal_remove {
+.task__remove_button:hover {
+  background-color: white;
+  fill: #cc0000;
+}
+
+.modal__remove {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -239,19 +258,19 @@ h3 {
   text-align: center;
 }
 
-.modal_remove h3 {
+.modal__remove h3 {
   color: #00713d;
   text-transform: uppercase;
   padding-bottom: 1rem;
 }
 
-.modal_remove__buttons_container {
+.modal__remove__buttons_container {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
-.modal_remove button {
+.modal__remove button {
   border: 1px solid #00713d;
   background-color: #43973b;
   color: white;
@@ -259,9 +278,10 @@ h3 {
   height: 2rem;
   border-radius: 10px;
   transition: background-color 0.2s, color 0.2s;
+  outline-width: 0px;
 }
 
-.modal_remove button:hover {
+.modal__remove button:hover {
   background-color: white;
   color: #00713d;
 }

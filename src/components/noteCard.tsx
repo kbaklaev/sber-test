@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { PencilIcon } from "./icons/icons";
+import { DeleteIcon, PencilIcon } from "./icons/icons";
+import RemoveNoteNotification from "./notifications/removeNoteNotification";
 import { INote, ITask } from "./types";
+import Modal from "react-modal";
 
 interface INoteCardProps {
   note: INote;
@@ -9,6 +11,12 @@ interface INoteCardProps {
 
 const NoteCard: React.FC<INoteCardProps> = ({ note }) => {
   const history = useHistory();
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
+  const removeNoteHandler = (): void => openModal();
 
   const editNoteHandler = (): void => {
     history.push(`/notes/note/${note.id}`);
@@ -25,6 +33,14 @@ const NoteCard: React.FC<INoteCardProps> = ({ note }) => {
           onClick={() => editNoteHandler()}
         >
           <PencilIcon />
+        </button>
+        <button
+          type="button"
+          title="Удалить заметку"
+          className="round-button red"
+          onClick={() => removeNoteHandler()}
+        >
+          <DeleteIcon />
         </button>
       </header>
       <main>
@@ -44,6 +60,15 @@ const NoteCard: React.FC<INoteCardProps> = ({ note }) => {
             : null}
         </ul>
       </main>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+        className="modal__remove"
+        ariaHideApp={false}
+      >
+        <RemoveNoteNotification note={note} closeModal={closeModal} />
+      </Modal>
     </div>
   );
 };

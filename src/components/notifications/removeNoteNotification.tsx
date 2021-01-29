@@ -25,13 +25,13 @@ const RemoveNoteNotification: React.FC<IRemoveNoteNotification> = ({
         existNotes.filter((keepNote: INote) => keepNote.id !== note.id)
       )
     );
-    history.goBack();
+    history.push('/notes');
   };
 
   return (
     <>
       <h3>удалить заметку?</h3>
-      <div className="modal_remove__buttons_container">
+      <div className="modal__remove__buttons_container">
         <button type="button" onClick={removeNoteHandler}>
           удалить
         </button>

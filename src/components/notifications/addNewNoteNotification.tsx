@@ -30,7 +30,7 @@ const NewNoteNotification: React.FC<INewNoteNotification> = ({
   return (
     <>
       <h3>создать новую заметку</h3>
-      <div className="modal_remove__buttons_container">
+      <div className="modal__remove__buttons_container">
         <button type="button" onClick={addNewNoteHandler}>
           создать
         </button>

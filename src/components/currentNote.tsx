@@ -93,7 +93,7 @@ const CurrentNote: React.FC = () => {
             value={note.title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Имя заметки"
-            className="title-input"
+            className="title__input"
           />
           <button
             type="button"
@@ -129,7 +129,7 @@ const CurrentNote: React.FC = () => {
       <button
         type="button"
         title="Вернуться к списку заметок без сохранения изменений"
-        className="round-button notes_back_button"
+        className="round-button notes__back-button"
         onClick={cancelChangesHandler}
       >
         <BackIcon />
@@ -138,7 +138,7 @@ const CurrentNote: React.FC = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Example Modal"
-        className="modal_remove"
+        className="modal__remove"
         ariaHideApp={false}
       >
         <RemoveNoteNotification note={note} closeModal={closeModal} />
