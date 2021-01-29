@@ -1,28 +1,19 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import { addNote } from "../redux/actions";
+import React, { useState } from "react";
+import { useSelector } from 'react-redux'
 import { PlusIcon } from "./icons/icons";
 import NoteCard from "./noteCard";
-import { INote } from "./types";
+import { INote, IUseSelector } from "./types";
+import Modal from "react-modal";
+import NewNoteNotification from "./notifications/addNewNoteNotification";
 
 const Notes: React.FC = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const notes: any = useSelector<any>((state) => state.notesStore.notes);
+  const notes = useSelector((state: IUseSelector) => state.notesStore.notes);
 
-  const addNewNoteHandler = () => {
-    const newId: string = uuidv4();
-    dispatch(
-      addNote({
-        id: newId,
-        title: "",
-        tasks: [{ id: uuidv4(), title: "", isDone: false }],
-      })
-    );
-    history.push(`/notes/note/${newId}`);
-  };
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
+  const addNewNoteHandler = (): void => openModal();
 
   return (
     <div>
@@ -50,6 +41,15 @@ const Notes: React.FC = () => {
       >
         <PlusIcon />
       </button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+        className="modal_remove"
+        ariaHideApp={false}
+      >
+        <NewNoteNotification closeModal={closeModal} />
+      </Modal>
     </div>
   );
 };

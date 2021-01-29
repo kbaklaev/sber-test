@@ -3,8 +3,15 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { addNote } from "../../redux/actions";
+import { ICLoseModal } from "../types";
 
-const NewNoteNotification: React.FC = () => {
+interface INewNoteNotification {
+  closeModal: ICLoseModal;
+}
+
+const NewNoteNotification: React.FC<INewNoteNotification> = ({
+  closeModal,
+}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -21,15 +28,17 @@ const NewNoteNotification: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
       <h3>создать новую заметку</h3>
-      <button type="button" onClick={addNewNoteHandler}>
-        создать
-      </button>
-      <button type="button" onClick={() => history.goBack()}>
-        отмена
-      </button>
-    </div>
+      <div className="modal_remove__buttons_container">
+        <button type="button" onClick={addNewNoteHandler}>
+          создать
+        </button>
+        <button type="button" onClick={() => closeModal()}>
+          отмена
+        </button>
+      </div>
+    </>
   );
 };
 

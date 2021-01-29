@@ -29,15 +29,19 @@ const NoteCard: React.FC<INoteCardProps> = ({ note }) => {
       </header>
       <main>
         <ul>
-          {note.tasks.length &&
-            note.tasks.map(
-              (task: ITask) =>
-                task.title && (
-                  <li key={task.id} className={task.isDone ? "task-done" : ""}>
-                    {task.title}
-                  </li>
-                )
-            )}
+          {note.tasks.length
+            ? note.tasks.map(
+                (task: ITask) =>
+                  task.title && (
+                    <li
+                      key={task.id}
+                      className={task.isDone ? "task-done" : ""}
+                    >
+                      {task.title}
+                    </li>
+                  )
+              )
+            : null}
         </ul>
       </main>
     </div>

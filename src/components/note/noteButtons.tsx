@@ -8,11 +8,13 @@ interface ICallback {
 interface INoteButtons {
   setNoteToStoreCallback: ICallback;
   addTaskHandlerCallback: ICallback;
+  cancelChangesCallback: ICallback;
 }
 
 const NoteButtons: React.FC<INoteButtons> = ({
   setNoteToStoreCallback,
   addTaskHandlerCallback,
+  cancelChangesCallback,
 }) => {
   const history = useHistory();
 
@@ -24,6 +26,10 @@ const NoteButtons: React.FC<INoteButtons> = ({
     setNoteToStoreCallback();
   };
 
+  const cancelChangesHandler = (): void => {
+    cancelChangesCallback();
+  };
+
   return (
     <div className="note__buttons">
       <button type="button" onClick={addTaskHandler}>
@@ -32,7 +38,7 @@ const NoteButtons: React.FC<INoteButtons> = ({
       <button type="button" onClick={setNoteToStoreHandler}>
         Сохранить изменения
       </button>
-      <button type="button" onClick={() => history.goBack()}>
+      <button type="button" onClick={cancelChangesHandler}>
         Отменить изменения
       </button>
     </div>

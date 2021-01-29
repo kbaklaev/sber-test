@@ -17,3 +17,16 @@ export interface IAction {
   type: string;
   payload: INote;
 }
+
+export interface IActionInitialState {
+  type: string,
+  payload: INotes
+}
+
+export interface IUseSelector {
+  notesStore: INotes;
+}
+
+export interface ICLoseModal {
+  (): void;
+}

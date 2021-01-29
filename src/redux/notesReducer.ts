@@ -1,26 +1,13 @@
+import { INotes } from './../components/types.d';
 import { ADD_NOTE, REMOVE_NOTE, UPDATE_NOTE } from "./actions";
-import { IAction, INotes } from "../components/types";
+import { IAction, INote } from "../components/types";
 
-const initialState: INotes = {
-  notes: [
-    {
-      id: "1",
-      title: "тестовая заметка",
-      tasks: [
-        {
-          id: "1",
-          title: "задача 1",
-          isDone: true,
-        },
-        {
-          id: "2",
-          title: "задача 2",
-          isDone: false,
-        },
-      ],
-    },
-  ],
-};
+const existNotesString: string = localStorage.getItem("notes") || "[]";
+const existNotes: INote[] = JSON.parse(existNotesString) || [];
+
+console.log(existNotes)
+
+const initialState: INotes = { notes: existNotes };
 
 const notesReducer = (state = initialState, action: IAction) => {
   switch (action.type) {

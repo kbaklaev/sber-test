@@ -8,7 +8,7 @@ import { BackIcon, DeleteIcon } from "./icons/icons";
 import NoteButtons from "./note/noteButtons";
 import Task from "./note/task";
 import RemoveNoteNotification from "./notifications/removeNoteNotification";
-import { INote } from "./types";
+import { INote, INotes, ITask, IUseSelector } from "./types";
 
 const initialNote: INote = {
   id: "",
@@ -20,12 +20,12 @@ const CurrentNote: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const path = useLocation();
-  const notes: any = useSelector<any>((state) => state.notesStore.notes);
-  const id: string = path.pathname.replace(/\/notes\/note\//g, "");
+  const notes = useSelector((state: IUseSelector) => state.notesStore.notes);
+  const id: string = path.pathname.replace(/(\/notes?){2}\//g, "");
   const currentNote: INote = notes.filter((note: INote) => note.id === id)[0];
   const [note, setNote] = useState(currentNote || initialNote);
 
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
@@ -45,7 +45,7 @@ const CurrentNote: React.FC = () => {
     }));
   };
 
-  const setTaskCallback = (currentTask: any) => {
+  const setTaskCallback = (currentTask: ITask) => {
     setNote((note) => ({
       ...note,
       tasks: note.tasks.map((task) =>
@@ -62,7 +62,15 @@ const CurrentNote: React.FC = () => {
 
   const setNoteToStore = () => {
     dispatch(updateNote(note));
-    localStorage.setItem("notes", JSON.stringify(note)); // brrr
+    const existNotesString: string = localStorage.getItem("notes") || "[]";
+    const existNotes: INote[] = JSON.parse(existNotesString);
+    localStorage.setItem(
+      "notes",
+      JSON.stringify([
+        ...existNotes.filter((existNote) => existNote.id !== note.id),
+        note,
+      ])
+    );
     history.goBack();
   };
 
@@ -99,20 +107,24 @@ const CurrentNote: React.FC = () => {
       </div>
       <section>
         <h3>задачи:</h3>
-        {note.tasks.length &&
-          note.tasks.map((task: any) => (
+        {note.tasks.length ? (
+          note.tasks.map((task: ITask) => (
             <React.Fragment key={task.id}>
               <Task
                 task={task}
                 removeTaskCallback={removeTaskCallback}
-                setTaskCallback={(task: any) => setTaskCallback(task)}
+                setTaskCallback={(task: ITask) => setTaskCallback(task)}
               />
             </React.Fragment>
-          ))}
+          ))
+        ) : (
+          <span>нет задач</span>
+        )}
       </section>
       <NoteButtons
         setNoteToStoreCallback={setNoteToStore}
         addTaskHandlerCallback={addTaskHandler}
+        cancelChangesCallback={cancelChangesHandler}
       />
       <button
         type="button"

@@ -1,12 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { INote } from "../types";
+import { ICLoseModal, INote } from "../types";
 import { removeNote } from "../../redux/actions";
-
-interface ICLoseModal {
-  (): void;
-}
 interface IRemoveNoteNotification {
   note: INote;
   closeModal: ICLoseModal;
@@ -21,11 +17,12 @@ const RemoveNoteNotification: React.FC<IRemoveNoteNotification> = ({
 
   const removeNoteHandler = () => {
     dispatch(removeNote(note));
-    let tempNotes = JSON.parse(localStorage.getItem("notes") || "");
+    const existNotesString: string = localStorage.getItem("notes") || "[]";
+    const existNotes: INote[] = JSON.parse(existNotesString);
     localStorage.setItem(
       "notes",
       JSON.stringify(
-        tempNotes.notes.filter((tempNote: INote) => tempNote.id !== note.id)
+        existNotes.filter((keepNote: INote) => keepNote.id !== note.id)
       )
     );
     history.goBack();
