@@ -10,9 +10,11 @@ body {
   --third-color: #7ec245;
   padding: var(--main-padding);
   word-wrap: break-word;
+  outline-width: 0px;
 }
 
-h2, h3 {
+h2,
+h3 {
   margin: 0;
 }
 
@@ -49,7 +51,7 @@ h2, h3 {
   gap: 10px;
 }
 
-.note__buttons{
+.note__buttons {
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -64,6 +66,7 @@ h2, h3 {
   background-color: var(--second-color);
   color: white;
   transition: background-color 0.2s, color 0.2s;
+    outline-width: 0px;
 }
 
 .note__buttons button:hover {
@@ -205,7 +208,7 @@ h2, h3 {
   transform: rotate(45deg);
 }
 
-.task__remove_button{
+.task__remove_button {
   display: flex;
   margin-top: 2px;
   height: 2rem;
@@ -260,5 +263,5 @@ h2, h3 {
 
 .modal_remove button:hover {
   background-color: white;
-  color: #00713d
+  color: #00713d;
 }

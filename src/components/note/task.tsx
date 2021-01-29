@@ -4,8 +4,8 @@ import { ITask } from "../types";
 
 interface ITaskProps {
   task: ITask;
-  removeTaskCallback: any;
-  setTaskCallback: any;
+  removeTaskCallback: (id: string) => void;
+  setTaskCallback: (task: ITask) => void;
 }
 
 const Task: React.FC<ITaskProps> = ({
