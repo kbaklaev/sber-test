@@ -17,8 +17,12 @@ h2, h3 {
 }
 
 .empty {
-  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+  width: 100%;
   color: var(--first-color);
+  text-align: center;
 }
 
 .note-card {
@@ -127,7 +131,6 @@ h2, h3 {
   width: 100%;
   width: -moz-available;
   width: -webkit-fill-available;
-  width: fill-available;
   display: flex;
   gap: 10px;
 }
@@ -215,4 +218,47 @@ h2, h3 {
 .task__remove_button svg {
   padding-top: 2px;
   text-align: center;
+}
+
+.modal_remove {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 30%;
+  left: 30%;
+  right: 30%;
+  bottom: 30%;
+  border: 1px solid #00713d;
+  background-color: #cce2d8;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.modal_remove h3 {
+  color: #00713d;
+  text-transform: uppercase;
+  padding-bottom: 1rem;
+}
+
+.modal_remove__buttons_container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.modal_remove button {
+  border: 1px solid #00713d;
+  background-color: #43973b;
+  color: white;
+  text-transform: capitalize;
+  height: 2rem;
+  border-radius: 10px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.modal_remove button:hover {
+  background-color: white;
+  color: #00713d
 }

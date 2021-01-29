@@ -16,18 +16,6 @@ const initialNote: INote = {
   tasks: [],
 };
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
-// Modal.setAppElement("current-note");
-
 const CurrentNote: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -37,26 +25,11 @@ const CurrentNote: React.FC = () => {
   const currentNote: INote = notes.filter((note: INote) => note.id === id)[0];
   const [note, setNote] = useState(currentNote || initialNote);
 
-  // modal
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  function openModal() {
-    setIsOpen(true);
-  }
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-  // modal
-
-  const removeNoteHandler = (): void => {
-    openModal();
-    // dispatch(removeNote(note));
-    // history.goBack();
-  };
+  const removeNoteHandler = (): void => openModal();
 
   const addTaskHandler = () => {
     setNote((note) => ({
@@ -89,6 +62,7 @@ const CurrentNote: React.FC = () => {
 
   const setNoteToStore = () => {
     dispatch(updateNote(note));
+    localStorage.setItem("notes", JSON.stringify(note)); // brrr
     history.goBack();
   };
 
@@ -150,12 +124,12 @@ const CurrentNote: React.FC = () => {
       </button>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
         contentLabel="Example Modal"
+        className="modal_remove"
+        ariaHideApp={false}
       >
-        <RemoveNoteNotification id={'1'} />
+        <RemoveNoteNotification note={note} closeModal={closeModal} />
       </Modal>
     </main>
   );
