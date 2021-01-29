@@ -1,7 +1,7 @@
 Notes app bootstrapped with CRA (with TS template + Redux)
 
 In the project directory run
-# `yarn install`
+### `yarn install`
 
 to install all dependencies.
 
